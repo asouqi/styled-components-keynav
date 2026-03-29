@@ -1,13 +1,17 @@
 import React from "react"
-import Accordion from "./Accordion"
 import {forwardRef} from "react"
 import {css} from "styled-components"
 import {KeyboardNavProps} from "../types"
 import MenuKeyboardNavComponent from "./Menu";
+import TabsKeyboardNavComponent from "./Tabs";
+import ListboxKeyboardNavComponent from "./Listbox";
+import GridKeyboardNavComponent from "./Grid";
 
 export const PATTERN_STRATEGIES = {
-    accordion: Accordion,
     menu: MenuKeyboardNavComponent,
+    tabs: TabsKeyboardNavComponent,
+    listbox: ListboxKeyboardNavComponent,
+    grid: GridKeyboardNavComponent,
 }
 
 export default function PatternFactory<T>(component: T, keyProps: KeyboardNavProps) {

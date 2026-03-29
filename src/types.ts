@@ -16,12 +16,6 @@ export type TabsPattern = {
     loop?: boolean
 }
 
-export type AccordionPattern = {
-    pattern: 'accordion'
-    multiExpand?: boolean
-    loop?: boolean
-}
-
 export type MenuPattern = {
     pattern: 'menu'
     orientation?: Orientation
@@ -33,17 +27,11 @@ export type GridPattern = {
     loop?: boolean
 }
 
-export type ButtonPattern = {
-    pattern: 'button'
-}
-
 export type KeyboardPatter =
     | DropDownPattern
     | TabsPattern
-    | AccordionPattern
     | MenuPattern
     | GridPattern
-    | ButtonPattern
 
 export type KeyboardNavProps = KeyboardPatter & {
     focusStyle?: CSSObject

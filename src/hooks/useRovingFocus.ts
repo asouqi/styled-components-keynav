@@ -45,7 +45,7 @@ export function useRovingFocus({count, orientation, loop, onNavigate, onActivate
             case nextKey: {
                 e.preventDefault()
                 const next = activeIndex + 1
-                setActiveIndex(loop ? next % count : Math.min(next, count + 1))
+                setActiveIndex(loop ? next % count : Math.min(next, count - 1))
                 break
             }
             case 'Home': {
