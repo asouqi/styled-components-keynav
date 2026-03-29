@@ -1,6 +1,6 @@
+import React, {useState} from "react";
 import styled from "styled-components";
 import {withKeyboardNav} from "../../../src/withKeyboardNav";
-import {useState} from "react/index";
 
 
 const List = styled.ul`
@@ -33,7 +33,7 @@ const KeyboardListbox = withKeyboardNav(List, {
     loop: false,
 })
 
-function CountryPicker() {
+export function CountryPicker() {
     const [selected, setSelected] = useState<number | null>(null)
 
     return (
