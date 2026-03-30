@@ -1,31 +1,42 @@
-import React, {forwardRef} from "react"
-import { KeyboardNavProps } from "../types";
-import styled from "styled-components";
-import {useTabs} from "../hooks/useTabs";
+import React, { forwardRef } from "react"
+import styled from "styled-components"
+import { useTabs } from "../hooks/useTabs"
+import { TabsPattern, LinearNavProps } from "../types"
 
-const TabsKeyboardNavComponent = forwardRef<HTMLElement, React.ComponentProps<KeyboardNavProps>>(({children, component, ...props}, ref) => {
-    const count = React.Children.count(children)
-    const { $focusStyles, onNavigate, onActivate, defaultActiveIndex = 0 } = props
-    const StyledBase = styled(component as React.ComponentType)`${$focusStyles}`
+type TabsComponentProps = TabsPattern & LinearNavProps & {
+    children?: React.ReactNode
+    component: React.ComponentType<any>
+    $focusStyles: any
+}
 
-    const { getItemProps, containerProps } = useTabs({
-        count,
-        orientation: props.orientation,
-        loop: props.loop,
-        onNavigate,
-        onActivate,
-        defaultActiveIndex,
-    })
+const TabsKeyboardNavComponent = forwardRef<HTMLElement, TabsComponentProps>(
+    ({ children, component, $focusStyles, onNavigate, onActivate, defaultActiveIndex = 0, orientation = 'horizontal', loop = true, activationMode = 'manual', ...props }, ref) => {
+        const count = React.Children.count(children)
+        const StyledBase = styled(component)`${$focusStyles}`
 
-    const childrenWithKeyboardNav = React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child as React.ReactNode)) return child
-        return React.cloneElement(
-            child as React.ReactNode,
-            {...getItemProps(index)}
+        const { getItemProps, containerProps } = useTabs({
+            count,
+            orientation,
+            loop,
+            activationMode,
+            onNavigate,
+            onActivate,
+            defaultActiveIndex,
+        })
+
+        const childrenWithKeyboardNav = React.Children.toArray(children).map(children, (child, index) => {
+            if (!React.isValidElement(child)) return child
+            return React.cloneElement(child, {
+                ...getItemProps(index),
+            })
+        })
+
+        return (
+            <StyledBase ref={ref} {...containerProps} {...props}>
+                {childrenWithKeyboardNav}
+            </StyledBase>
         )
-    })
-
-    return <StyledBase ref={ref} {...containerProps} children={childrenWithKeyboardNav} {...props} />
-})
+    }
+)
 
 export default TabsKeyboardNavComponent

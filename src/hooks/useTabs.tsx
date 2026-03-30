@@ -1,13 +1,16 @@
 import { useRovingFocus } from './useRovingFocus'
+import {UseRovingFocus, UseRovingFocusProps} from "../types";
 
-type UseTabsProps = {
-    count: number
+type UseTabsProps = Omit<UseRovingFocusProps, 'orientation'> & {
     orientation?: 'horizontal' | 'vertical'
-    activationMode?: 'manual' | 'automatic'
-    loop?: boolean
-    onNavigate?: (index: number) => void
-    onActivate?: (index: number) => void
-    defaultActiveIndex?: number
+    /** 'automatic' = select on focus, 'manual' = select on Enter/Space */
+    activationMode?: 'automatic' | 'manual'
+}
+
+type UseTabs = UseRovingFocus & {
+    getTabProps: (index: number) => ReturnType<UseRovingFocus['getItemProps']> & {
+        role: 'tab'
+    }
 }
 
 export function useTabs({
@@ -18,8 +21,7 @@ export function useTabs({
                             onNavigate,
                             onActivate,
                             defaultActiveIndex = 0,
-                        }: UseTabsProps) {
-
+                        }: UseTabsProps): UseTabs {
     // If automatic, selecting happens on navigation
     const handleNavigate = (index: number) => {
         onNavigate?.(index)
@@ -41,7 +43,9 @@ export function useTabs({
         ...rovingFocus,
         getTabProps: (index: number) => ({
             ...rovingFocus.getItemProps(index),
-            role: 'tab',
+            role: 'tab' as const,
         }),
     }
 }
+
+export type { UseTabsProps }

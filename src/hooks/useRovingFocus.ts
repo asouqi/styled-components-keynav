@@ -1,17 +1,10 @@
 import React, {useState, useCallback, useRef} from "react"
-import type { UseRovingFocus, Orientation } from '../types';
-import {KeyboardNavProps} from "../types";
-
-type RovingFocusProps = Pick<KeyboardNavProps, 'onNavigate' | 'onActivate' | 'defaultActiveIndex'> & {
-    count: number
-    orientation?: Orientation;
-    loop?: boolean;
-};
+import type { UseRovingFocus, UseRovingFocusProps } from '../types';
 
 /**
  * Manages roving tabIndex across a set of items, and move focus between items using Arrow keys.
  */
-export function useRovingFocus({count, orientation, loop, onNavigate, onActivate, defaultActiveIndex = 0}: RovingFocusProps): UseRovingFocus {
+export function useRovingFocus({count, orientation, loop, onNavigate, onActivate, defaultActiveIndex = 0}: UseRovingFocusProps): UseRovingFocus {
     const [activeIndex, _setActiveIndex] = useState(defaultActiveIndex)
     const activeElementRef = useRef<HTMLElement>(null)
 
