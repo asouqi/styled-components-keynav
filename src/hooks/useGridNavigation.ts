@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react'
+import {UseGridNavigation} from "../types";
 
 type UseGridNavigationProps = {
     /** Number of rows */
@@ -17,21 +18,6 @@ type UseGridNavigationProps = {
     defaultColumnIndex?: number
 }
 
-type UseGridNavigation = {
-    activeRow: number
-    activeColumn: number
-    setActiveCell: (row: number, column: number) => void
-    getCellProps: (row: number, column: number) => {
-        tabIndex: number
-        'data-active': boolean
-        onFocus: () => void
-        ref: (e: HTMLElement) => void
-    }
-    containerProps: {
-        role: 'grid'
-        onKeyDown: (e: React.KeyboardEvent) => void
-    }
-}
 
 export function useGridNavigation({
                                       rows,
