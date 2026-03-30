@@ -6,10 +6,12 @@ import MenuKeyboardNavComponent from "./Menu";
 import TabsKeyboardNavComponent from "./Tabs";
 import ListboxKeyboardNavComponent from "./Listbox";
 import GridKeyboardNavComponent from "./Grid";
+import ToolbarKeyboardNavComponent from "./Toolbar";
 
 export const PATTERN_STRATEGIES = {
     menu: MenuKeyboardNavComponent,
     tabs: TabsKeyboardNavComponent,
+    toolbar: ToolbarKeyboardNavComponent,
     listbox: ListboxKeyboardNavComponent,
     grid: GridKeyboardNavComponent,
 }

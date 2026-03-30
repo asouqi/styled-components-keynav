@@ -24,7 +24,7 @@ const TabsKeyboardNavComponent = forwardRef<HTMLElement, TabsComponentProps>(
             defaultActiveIndex,
         })
 
-        const childrenWithKeyboardNav = React.Children.toArray(children).map(children, (child, index) => {
+        const childrenWithKeyboardNav = React.Children.toArray(children).map((child, index) => {
             if (!React.isValidElement(child)) return child
             return React.cloneElement(child, {
                 ...getItemProps(index),

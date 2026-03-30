@@ -1,16 +1,16 @@
-import React, { forwardRef } from "react"
+import React, { ReactElement, forwardRef } from "react"
 import styled from "styled-components"
 import { useRovingFocus } from "../hooks/useRovingFocus"
-import { ListboxPattern, LinearNavProps } from "../types"
+import { ToolbarPattern, LinearNavProps } from "../types"
 
-type ListboxComponentProps = ListboxPattern & LinearNavProps & {
+type ToolbarComponentProps = ToolbarPattern & LinearNavProps & {
     children?: React.ReactNode
-    component: React.ComponentType<any>
+    component: React.ComponentType<ReactElement>
     $focusStyles: any
 }
 
-const ListboxKeyboardNavComponent = forwardRef<HTMLElement, ListboxComponentProps>(
-    ({ children, component, $focusStyles, onNavigate, onActivate, defaultActiveIndex = 0, orientation = 'vertical', loop = false, ...props }, ref) => {
+const ToolbarKeyboardNavComponent = forwardRef<HTMLElement, ToolbarComponentProps>(
+    ({ children, component, $focusStyles, onNavigate, onActivate, defaultActiveIndex = 0, orientation = 'vertical', loop = true, ...props }, ref) => {
         const count = React.Children.count(children)
         const StyledBase = styled(component)`${$focusStyles}`
 
@@ -31,11 +31,11 @@ const ListboxKeyboardNavComponent = forwardRef<HTMLElement, ListboxComponentProp
         })
 
         return (
-            <StyledBase role={'listbox'} ref={ref} {...containerProps} {...props}>
+            <StyledBase role={'toolbar'} ref={ref} {...containerProps} {...props}>
                 {childrenWithKeyboardNav}
             </StyledBase>
         )
     }
 )
 
-export default ListboxKeyboardNavComponent
+export default ToolbarKeyboardNavComponent

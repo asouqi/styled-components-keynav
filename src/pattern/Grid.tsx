@@ -24,10 +24,10 @@ const GridKeyboardNavComponent = forwardRef<HTMLElement, GridComponentProps>(
 
         // Expects children to be a flat array or rows containing cells
         // User is responsible for structure, we provide getCellProps
-        const childrenWithKeyboardNav = React.Children.toArray(children).map(children, (row, rowIndex) => {
+        const childrenWithKeyboardNav = React.Children.toArray(children).map((row, rowIndex) => {
             if (!React.isValidElement(row)) return row
 
-            const cells = React.Children.toArray(row.props.children).map(children, (cell, colIndex) => {
+            const cells = React.Children.toArray(row.props.children).map((cell, colIndex) => {
                 if (!React.isValidElement(cell)) return cell
                 return React.cloneElement(cell, {
                     ...gridNav.getCellProps(rowIndex, colIndex),

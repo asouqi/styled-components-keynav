@@ -23,7 +23,7 @@ const MenuKeyboardNavComponent = forwardRef<HTMLElement, MenuComponentProps>(
             defaultActiveIndex,
         })
 
-        const childrenWithKeyboardNav = React.Children.toArray(children).map(children, (child, index) => {
+        const childrenWithKeyboardNav = React.Children.toArray(children).map((child, index) => {
             if (!React.isValidElement(child)) return child
             return React.cloneElement(child, {
                 ...getItemProps(index),
@@ -31,7 +31,7 @@ const MenuKeyboardNavComponent = forwardRef<HTMLElement, MenuComponentProps>(
         })
 
         return (
-            <StyledBase ref={ref} {...containerProps} {...props}>
+            <StyledBase role={'menu'} ref={ref} {...containerProps} {...props}>
                 {childrenWithKeyboardNav}
             </StyledBase>
         )
