@@ -30,7 +30,7 @@ export function useGridNavigation({
                                   }: UseGridNavigationProps): UseGridNavigation {
     const [activeRow, setActiveRow] = useState(defaultRowIndex)
     const [activeColumn, setActiveColumn] = useState(defaultColumnIndex)
-    const activeElementRef = useRef<HTMLElement>(null)
+    const activeElementRef = useRef<HTMLElement | null>(null)
 
     const setActiveCell = useCallback((row: number, column: number) => {
         setActiveRow(row)

@@ -1,5 +1,5 @@
+import React, { RefCallback } from "react"
 import { CSSObject } from "styled-components"
-import { RefCallback } from "react"
 
 export type Orientation = 'horizontal' | 'vertical'
 
@@ -117,7 +117,7 @@ export type UseRovingFocus = {
         tabIndex: number
         'data-active': boolean
         onFocus: () => void
-        ref: RefCallback<HTMLElement>
+        ref: RefCallback<HTMLElement | null>
     }
     /** Props to spread on container */
     containerProps: {
@@ -137,7 +137,7 @@ export type UseGridNavigation = {
         tabIndex: number
         'data-active': boolean
         onFocus: () => void
-        ref: RefCallback<HTMLElement>
+        ref: RefCallback<HTMLElement | null>
     }
     /** Props to spread on container */
     containerProps: {
@@ -147,7 +147,7 @@ export type UseGridNavigation = {
 }
 
 export type UseFocusTrap = {
-    containerRef: React.RefObject<HTMLElement>
+    containerRef: React.RefObject<HTMLElement | null>
     activate: () => void
     deactivate: () => void
     isActive: boolean

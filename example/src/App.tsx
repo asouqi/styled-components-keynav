@@ -6,6 +6,7 @@ import { TabList } from './components/tabs'
 import { CountryPicker } from './components/listbox'
 import { Calendar, ImageGallery } from './components/grid'
 import { EditorToolbar } from './components/toolbar'
+import {SimpleModal} from "./components/focusTrap";
 
 const AppContainer = styled.div`
   max-width: 1200px;
@@ -162,6 +163,19 @@ function App() {
                     <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> Navigate images •
                     <kbd>Enter</kbd> Open lightbox •
                     <kbd>Esc</kbd> Close lightbox
+                </KeyboardHint>
+            </Section>
+
+            <Section>
+                <SectionTitle>Focus Trap (Modal)</SectionTitle>
+                <SectionDescription>
+                    Traps focus within a modal dialog. Focus is restored when closed.
+                </SectionDescription>
+                <SimpleModal />
+                <KeyboardHint>
+                    <kbd>Tab</kbd> Cycle through focusable elements •
+                    <kbd>Shift+Tab</kbd> Cycle backwards •
+                    <kbd>Esc</kbd> Close modal
                 </KeyboardHint>
             </Section>
         </AppContainer>

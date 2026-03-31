@@ -1,18 +1,46 @@
 {
   "name": "styled-components-keynav",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Add WAI-ARIA keyboard navigation to styled-components with a single HOC",
+  "author": "asouqi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asouqi/styled-components-keynav.git"
+  },
+  "keywords": [
+    "react",
+    "styled-components",
+    "accessibility",
+    "a11y",
+    "keyboard-navigation",
+    "aria"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
     "type-check": "tsc --noEmit",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "pnpm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.22.0",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "styled-components": ">=6.0.0"
+  },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -23,5 +51,6 @@
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "packageManager": "pnpm@10.22.0"
 }

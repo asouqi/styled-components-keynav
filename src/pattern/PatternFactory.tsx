@@ -33,7 +33,7 @@ export default function PatternFactory<T>(component: T, keyProps: KeyboardNavPro
 
     const Component = PATTERN_STRATEGIES[keyProps.pattern]
 
-    return forwardRef(({...props}, ref) => {
-        return <Component $focusStyles={focusStyles} ref={ref} {...props} {...keyProps} component={component} />
+    return forwardRef<HTMLElement, React.ComponentProps<'html'>>(({...props}, ref) => {
+        return <Component $focusStyles={focusStyles as never} ref={ref} {...props} {...keyProps} component={component} />
     })
 }

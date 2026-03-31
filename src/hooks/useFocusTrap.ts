@@ -16,13 +16,13 @@ const FOCUSABLE_SELECTORS = [
  * Restores focus to the previously focused element on deactivation.
  */
 export function useFocusTrap(): UseFocusTrap {
-    const containerRef = useRef<HTMLElement>(null)
-    const previousFocusRef = useRef<HTMLElement>(null)
+    const containerRef = useRef<HTMLElement | null>(null)
+    const previousFocusRef = useRef<HTMLElement | null>(null)
     const [isActive, setIsActive] = useState(false)
 
     const getFocusableElement = useCallback(() => {
         if (!containerRef.current) return [] as HTMLElement[]
-        return Array.from(containerRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS))
+        return Array.from(containerRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS))
     }, [])
 
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -64,7 +64,7 @@ export function useFocusTrap(): UseFocusTrap {
         document.removeEventListener('keydown', handleKeyDown)
         // restore focus to the previous focusable element
         if (previousFocusRef.current) {
-            previousFocusRef.current.focus()
+            previousFocusRef.current!.focus()
             previousFocusRef.current = null
         }
         setIsActive(false)

@@ -12,7 +12,7 @@ type MenuComponentProps = MenuPattern & LinearNavProps & {
 const MenuKeyboardNavComponent = forwardRef<HTMLElement, MenuComponentProps>(
     ({ children, component, $focusStyles, onNavigate, onActivate, defaultActiveIndex = 0, orientation = 'vertical', loop = true, ...props }, ref) => {
         const count = React.Children.count(children)
-        const StyledBase = styled(component)`${$focusStyles}`
+        const StyledBase = styled(component)`${$focusStyles}` as any
 
         const { getItemProps, containerProps } = useRovingFocus({
             count,
